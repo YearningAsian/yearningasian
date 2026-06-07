@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/claude-idle.gif" width="96" alt="claude code mascot">
-
 # Colin Onevathana
 
 **CS @ MTSU · 6× Hackathon Winner · Building AI-powered tools**
@@ -13,16 +11,16 @@
 
 ---
 
-### Tech Stack
+### Stack
 
 [![Skills](https://skillicons.dev/icons?i=python,ts,react,nextjs,fastapi,tailwind,supabase,postgres,figma,git,cpp,java&perline=6)](https://skillicons.dev)
 
 ---
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="profile-3d-contrib/profile-night-rainbow.svg">
-  <source media="(prefers-color-scheme: light)" srcset="profile-3d-contrib/profile-south-season-animate.svg">
-  <img alt="3D Contribution Graph" src="profile-3d-contrib/profile-night-rainbow.svg" width="100%">
-</picture>
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=YearningAsian&bg_color=0d1117&color=ffa929&line=ffa929&point=ffffff&area=true&area_color=ffa929&hide_border=true&custom_title=Contribution%20Activity)](https://github.com/ashutosh00710/github-readme-activity-graph)
+
+---
+
+<img src="assets/claude-idle.gif" width="80" alt="claude code mascot">
 
 </div>
