@@ -21,6 +21,6 @@
 
 ---
 
-<img src="assets/dash-pet.gif" width="80" alt="claude code mascot">
+<img src="assets/dash-pet.gif" width="300" alt="claude code mascot coding animation">
 
 </div>
