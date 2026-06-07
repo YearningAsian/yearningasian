@@ -1,0 +1,35 @@
+name: 3D Contribution Graph
+
+on:
+  schedule:
+    - cron: "0 18 * * *"  # runs daily at midnight CST
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Generate 3D Contribution Graph
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: yoshi389111/github-profile-3d-contrib@0.7.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+          MAX_REPOS: 100
+          SETTING_JSON: |
+            {
+              "githubUserName": "YearningAsian",
+              "startForeground": "#a78bfa",
+              "endForeground": "#60a5fa",
+              "background": "#0d1117",
+              "northForeground": "#a78bfa",
+              "southForeground": "#60a5fa",
+              "cornerCaptionForeground": "#ffffff",
+              "contribTypes": ["commitContributions", "pullRequestContributions", "pullRequestReviewContributions", "issueContributions"]
+            }
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update 3D contribution graph"
+          branch: frontend
