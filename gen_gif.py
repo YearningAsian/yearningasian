@@ -186,23 +186,45 @@ FRAMES = [
     (BASE, 0, 350),
 ]
 
-os.makedirs("assets", exist_ok=True)
+# Anchor output to the repo (this script's directory) so the GIF is written
+# to the right place regardless of the current working directory.
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_PATH = os.path.join(SCRIPT_DIR, "assets", "dash-pet.gif")
 
-shine_span = TEXT_PIXEL_W * TEXT_SCALE + TEXT_PIXEL_H * TEXT_SCALE + 8
-frames = [
-    render(g, y, -TEXT_PIXEL_H * TEXT_SCALE + round(i * shine_span / len(FRAMES)))
-    for i, (g, y, _) in enumerate(FRAMES)
-]
-durations = [d for _, _, d in FRAMES]
 
-frames[0].save(
-    "assets/dash-pet.gif",
-    save_all=True,
-    append_images=frames[1:],
-    duration=durations,
-    loop=0,
-    transparency=0,
-    disposal=2,
-    optimize=False,
-)
-print(f"Saved assets/dash-pet.gif  ({CANVAS_W*SCALE}x{CANVAS_H*SCALE}px per frame, {len(FRAMES)} frames)")
+def build_frames():
+    """Render every animation frame, applying the bounce offset and shine sweep."""
+    shine_span = TEXT_PIXEL_W * TEXT_SCALE + TEXT_PIXEL_H * TEXT_SCALE + 8
+    return [
+        render(g, y, -TEXT_PIXEL_H * TEXT_SCALE + round(i * shine_span / len(FRAMES)))
+        for i, (g, y, _) in enumerate(FRAMES)
+    ]
+
+
+def save_gif(frames, output_path=OUTPUT_PATH):
+    """Write the animated GIF to ``output_path``, creating its directory."""
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    durations = [d for _, _, d in FRAMES]
+    frames[0].save(
+        output_path,
+        save_all=True,
+        append_images=frames[1:],
+        duration=durations,
+        loop=0,
+        transparency=0,
+        disposal=2,
+        optimize=False,
+    )
+
+
+def main():
+    frames = build_frames()
+    save_gif(frames)
+    print(
+        f"Saved {OUTPUT_PATH}  "
+        f"({CANVAS_W * SCALE}x{CANVAS_H * SCALE}px per frame, {len(FRAMES)} frames)"
+    )
+
+
+if __name__ == "__main__":
+    main()
